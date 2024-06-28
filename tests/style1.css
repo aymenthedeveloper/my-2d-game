@@ -1,0 +1,86 @@
+:root{
+  --pixel-size: 2px;
+  --bg: #9fa7e4;
+  --grid-cell: calc( var(--pixel-size) * 16);
+}
+body{
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg);
+}
+.camera{
+  --size: 200px;
+  width: calc(var(--pixel-size) * 160);
+  height: calc(var(--pixel-size) * 144);
+  outline: var(--pixel-size) solid white;
+  overflow: hidden;
+  background: #61ddf7;
+  position: relative;
+}
+
+.pixel-art{
+  image-rendering: pixelated;
+}
+.map{
+  background-image: url("https://assets.codepen.io/21542/CameraDemoMap.png");
+  background-size: 100%;
+  width: calc(13 * var(--grid-cell));
+  height: calc(10 * var(--grid-cell));
+  position: relative;
+}
+.character{
+  width: calc(2 * var(--grid-cell));
+  height: calc(2 * var(--grid-cell));
+  overflow: hidden;
+  position: absolute;
+}
+.character .spritesheet {
+  position: absolute;
+  background: url("https://assets.codepen.io/21542/DemoRpgCharacter.png") no-repeat no-repeat;
+  background-size: 100%;
+  width: calc( var(--grid-cell)* 8 );
+  height: calc( var(--grid-cell)* 8 );
+}
+.character .shadow{
+  width: calc( var(--grid-cell)* 2 );
+  height: calc( var(--grid-cell)* 2 );
+  position: absolute;
+  left:0;
+  top:0;
+  background: url("https://assets.codepen.io/21542/DemoRpgCharacterShadow.png") no-repeat no-repeat;
+  background-size: 100%;
+}
+.character[facing="down"] .spritesheet{
+  background-position-y: calc(var(--grid-cell) * 0);
+}
+.character[facing="left"] .spritesheet{
+  background-position-y: calc(var(--grid-cell) * -6);
+}
+
+.character[facing="up"] .spritesheet{
+  background-position-y: calc(var(--grid-cell) * -4);
+}
+.character[facing="right"] .spritesheet{
+  background-position-y: calc(var(--grid-cell) * -2);
+} 
+.character[walking="true"] .spritesheet{
+  animation: walking .6s steps(4) infinite;
+}
+@keyframes walking {
+  from{
+    transform: translate(0,0);
+  }
+  to{
+    transform: translate(-100%,0); 
+  }
+}
+.info{
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 17px;
+  color: black;
+}

@@ -1,0 +1,63 @@
+:root{
+  --pixel-size: 1px;
+  --grid-cell: calc(16 * var(--pixel-size));
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 32px;
+  min-height: 45vh;
+}
+.map{
+  width: calc(13 * var(--grid-cell));
+  height:calc(9 * var(--grid-cell));
+  border: 1px solid black;
+  image-rendering: pixelated;
+}
+.btns {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin: auto;
+  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  transform: rotate(45deg);
+}
+
+.btns .btn{
+  --clr: rgba(0, 0, 0, 0.1);
+  --fg: black;
+  box-sizing: border-box;
+  background-color: var(--clr);
+  box-shadow: 0 0 0 7px var(--clr);
+  --size: 15px;
+  position: relative;
+  --border: 5px;
+  width: var(--size);
+  height: var(--size);
+  border-block-start: var(--border) solid var(--fg);
+  border-inline-end: var(--border) solid var(--fg);
+  border-block-end: var(--border) solid transparent;
+  border-inline-start: var(--border) solid transparent;
+
+  cursor: pointer;
+}
+.btns .btn:hover, 
+.btns .btn:focus{
+  --clr: rgba(0, 0, 0, 0.6);
+  --fg: white;
+}
+.btns .btn.up{
+  transform: rotate(-90deg);
+}
+.btns .btn.right{
+  transform: rotate(0deg);
+}
+.btns .btn.down{
+  transform: rotate(90deg);
+}
+.btns .btn.left{
+  transform: rotate(-180deg);
+}
